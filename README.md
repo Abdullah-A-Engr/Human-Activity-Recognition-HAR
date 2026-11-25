@@ -18,6 +18,40 @@ A deep learning project that recognizes six human activities from smartphone mot
 - Temporal Attention
 - HARNet Classification Model
 
+## Model Architecture and Temporal Attention
+
+### Recurrent Neural Network Models
+
+This project explores recurrent architectures for Human Activity Recognition using sequential smartphone sensor data. Each input window consists of 128 time steps and 9 sensor channels, allowing the models to learn temporal patterns associated with different human activities.
+
+The implemented architectures include:
+
+- **RNN:** A basic recurrent network used to learn sequential patterns from sensor measurements.
+- **LSTM:** Introduces a memory mechanism to retain relevant information across time steps and reduce the limitations of conventional recurrent networks.
+- **Bidirectional LSTM (BiLSTM):** Processes sequences in both forward and backward directions to capture contextual information from the entire sensor window.
+- **HARNet with Temporal Attention:** Combines bidirectional LSTM representations with a temporal attention mechanism to assign different importance weights to individual time steps.
+
+### Temporal Attention Mechanism
+
+Instead of treating every time step equally, temporal attention learns which portions of the input sequence are more informative for activity classification.
+
+The attention mechanism calculates a weight for each temporal step. These weights are normalized so that their sum equals one, allowing the network to construct a weighted representation of the sequence.
+
+The resulting context vector emphasizes relevant temporal information before it is passed to the classification layer. This helps the model focus on meaningful movement patterns rather than relying equally on every sensor measurement.
+
+### Model Design
+
+The HARNet architecture uses the following processing pipeline:
+
+1. Input sensor sequence of shape **128 × 9**.
+2. Bidirectional LSTM for temporal feature extraction.
+3. Temporal attention for selecting informative time steps.
+4. Context vector generation using weighted sequence representations.
+5. Fully connected classification layer.
+6. Prediction of one of the six activity classes.
+
+This design combines sequential learning with attention-based feature aggregation to improve activity recognition performance.
+  
 ## Results
 - **Test Accuracy:** 93.45%
 - **Trainable Parameters:** 46,982
